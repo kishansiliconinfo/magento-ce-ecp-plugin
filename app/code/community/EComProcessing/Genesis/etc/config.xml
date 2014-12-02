@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+       <EComProcessing_Genesis>
+         <version>0.1.0</version>
+       </EComProcessing_Genesis>
+    </modules>
+
+    <global>
+        <models>
+            <ecomprocessing_genesis>
+                <class>EComProcessing_Genesis_Model</class>
+            </ecomprocessing_genesis>
+        </models>
+        <helpers>
+            <ecomprocessing_genesis>
+                <class>EComProcessing_Genesis_Helper</class>
+            </ecomprocessing_genesis>
+        </helpers>
+    </global>
+
+    <default>
+        <payment>
+            <ecomprocessing_genesis>
+                <active>0</active>
+                <model>ecomprocessing_genesis/standard</model>
+                <order_status>pending</order_status>
+                <title>Credit Card (E-ComProcessing)</title>
+                <cctypes>AE,VI,MC,DI</cctypes>
+                <payment_action>authorize</payment_action>
+                <allowspecific>0</allowspecific>
+            </ecomprocessing_genesis>
+         </payment>
+    </default>
+</config>

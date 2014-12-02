@@ -1,0 +1,11 @@
+<config>
+    <modules>
+        <EComProcessing_Genesis>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Payment />
+            </depends>
+        </EComProcessing_Genesis>
+    </modules>
+</config>
