@@ -2,34 +2,69 @@
 <config>
     <modules>
        <EComProcessing_Genesis>
-         <version>0.1.0</version>
+         <version>1.0.0</version>
        </EComProcessing_Genesis>
     </modules>
 
     <global>
+        <blocks>
+            <ecomprocessing>
+                <class>EComProcessing_Genesis_Block</class>
+            </ecomprocessing>
+        </blocks>
+
         <models>
-            <ecomprocessing_genesis>
+            <ecomprocessing>
                 <class>EComProcessing_Genesis_Model</class>
-            </ecomprocessing_genesis>
+            </ecomprocessing>
         </models>
+
         <helpers>
-            <ecomprocessing_genesis>
+            <ecomprocessing>
                 <class>EComProcessing_Genesis_Helper</class>
-            </ecomprocessing_genesis>
+            </ecomprocessing>
         </helpers>
+
+        <payment>
+            <groups>
+                <ecomprocessing>E-ComProcessing</ecomprocessing>
+            </groups>
+        </payment>
     </global>
+
+    <frontend>
+        <routers>
+            <ecomprocessing>
+                <use>standard</use>
+                <args>
+                    <module>EComProcessing_Genesis</module>
+                    <frontName>ecomprocessing</frontName>
+                </args>
+            </ecomprocessing>
+        </routers>
+    </frontend>
 
     <default>
         <payment>
-            <ecomprocessing_genesis>
-                <active>0</active>
-                <model>ecomprocessing_genesis/standard</model>
+            <ecomprocessing_standard>
+                <model>ecomprocessing/standard</model>
                 <order_status>pending</order_status>
-                <title>Credit Card (E-ComProcessing)</title>
-                <cctypes>AE,VI,MC,DI</cctypes>
+                <title>Credit Card (EComProcessing)</title>
+                <payment_action>capture</payment_action>
+                <cctypes>VI,MC</cctypes>
                 <payment_action>authorize</payment_action>
-                <allowspecific>0</allowspecific>
-            </ecomprocessing_genesis>
+                <group>ecomprocessing</group>
+            </ecomprocessing_standard>
+            <!--
+            <ecomprocessing_express>
+                <model>ecomprocessing/express</model>
+                <order_status>pending</order_status>
+                <title>Credit Card (EComProcessing Express)</title>
+                <cctypes>VI,MC</cctypes>
+                <payment_action>authorize</payment_action>
+                <group>ecomprocessing</group>
+            </ecomprocessing_express>
+            -->
          </payment>
     </default>
 </config>
