@@ -10,8 +10,8 @@ class EComProcessing_Genesis_Block_Redirect_Standard extends Mage_Core_Block_Abs
 
 		$form
 			->setAction($target)
-			->setId('emerchantpay_redirect_notification')
-			->setName('emerchantpay_redirect_notification')
+			->setId('ecomprocessing_redirect_notification')
+			->setName('ecomprocessing_redirect_notification')
 			->setMethod('POST')
 			->setUseContainer(true);
 
