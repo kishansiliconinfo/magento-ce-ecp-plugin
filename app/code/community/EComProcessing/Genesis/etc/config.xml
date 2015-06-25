@@ -2,7 +2,7 @@
 <config>
     <modules>
        <EComProcessing_Genesis>
-         <version>1.0.0</version>
+         <version>1.2.1</version>
        </EComProcessing_Genesis>
     </modules>
 
@@ -27,7 +27,7 @@
 
         <payment>
             <groups>
-                <ecomprocessing>E-ComProcessing</ecomprocessing>
+                <ecomprocessing>EComProcessing</ecomprocessing>
             </groups>
         </payment>
     </global>
@@ -46,25 +46,21 @@
 
     <default>
         <payment>
-            <ecomprocessing_standard>
-                <model>ecomprocessing/standard</model>
+            <ecomprocessing_direct>
+                <model>ecomprocessing/direct</model>
                 <order_status>pending</order_status>
-                <title>Credit Card (EComProcessing)</title>
-                <payment_action>capture</payment_action>
-                <cctypes>VI,MC</cctypes>
+                <title>Credit Card (ECP Direct)</title>
+                <cctypes>VI,MC,SM,AE,DI,JCB,OT</cctypes>
                 <payment_action>authorize</payment_action>
                 <group>ecomprocessing</group>
-            </ecomprocessing_standard>
-            <!--
-            <ecomprocessing_express>
-                <model>ecomprocessing/express</model>
+            </ecomprocessing_direct>
+            <ecomprocessing_checkout>
+                <model>ecomprocessing/checkout</model>
                 <order_status>pending</order_status>
-                <title>Credit Card (EComProcessing Express)</title>
-                <cctypes>VI,MC</cctypes>
-                <payment_action>authorize</payment_action>
+                <title>Credit Card (ECP Checkout)</title>
+                <payment_action>order</payment_action>
                 <group>ecomprocessing</group>
-            </ecomprocessing_express>
-            -->
+            </ecomprocessing_checkout>
          </payment>
     </default>
 </config>
