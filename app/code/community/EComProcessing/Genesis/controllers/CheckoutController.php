@@ -32,7 +32,7 @@ class EComProcessing_Genesis_CheckoutController extends Mage_Core_Controller_Fro
 
     protected function _construct()
     {
-        $this->helper = Mage::helper('emerchantpay');
+        $this->helper = Mage::helper('ecomprocessing');
 
         $this->checkout = Mage::getModel('ecomprocessing/checkout');
     }
@@ -82,10 +82,9 @@ class EComProcessing_Genesis_CheckoutController extends Mage_Core_Controller_Fro
     }
 
     /**
-     * When a customer chooses eMerchantPay Checkout on
-     * Checkout/Payment page, show them a "transition"
-     * page where you notify them, that they will be
-     * redirected to a new website.
+     * When a customer has to be redirected, show
+     * a "transition" page where you notify them,
+     * that they will be redirected to a new website.
      *
      * @see Genesis_API_Documentation \ notification_url
      *
