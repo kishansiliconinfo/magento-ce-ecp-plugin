@@ -20,7 +20,7 @@
 /**
  * Class EComProcessing_Genesis_Model_Admin_Options_Environment
  *
- * Admin options Dropdown for Gateway environment
+ * Admin options Drop-down for Gateway environment
  */
 class EComProcessing_Genesis_Model_Admin_Options_Environment
 {
