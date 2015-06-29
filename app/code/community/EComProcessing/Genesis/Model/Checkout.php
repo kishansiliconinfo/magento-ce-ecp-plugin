@@ -34,8 +34,8 @@ class EComProcessing_Genesis_Model_Checkout extends Mage_Payment_Model_Method_Ab
     protected $_canUseInternal    = false;
     protected $_canUseCheckout    = true;
 
-    protected $_canUseForMultishipping  = true;
     protected $_canFetchTransactionInfo = true;
+    protected $_canUseForMultishipping  = false;
     protected $_canSaveCc               = false;
 
     /**

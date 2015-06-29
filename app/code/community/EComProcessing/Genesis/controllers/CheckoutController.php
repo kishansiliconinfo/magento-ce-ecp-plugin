@@ -148,6 +148,6 @@ class EComProcessing_Genesis_CheckoutController extends Mage_Core_Controller_Fro
             $this->helper->__('Your payment session has been cancelled successfully!')
         );
 
-        $this->_redirect('checkout/cart');
+        $this->_redirect('checkout/cart', array('_secure' => true));
     }
 }
