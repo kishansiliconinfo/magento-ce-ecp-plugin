@@ -20,30 +20,70 @@
  *
  * @license     http://opensource.org/licenses/MIT The MIT License
  */
-namespace Genesis\Exceptions;
+namespace Genesis\API\Constants\Payment;
 
 /**
- * Class InvalidMethod
+ * Class Methods
  *
- * @package Genesis\Exceptions
+ * Payment methods for Genesis Transactions
+ *
+ * @package Genesis\API\Constants\Transaction
  */
-class InvalidMethod extends \Exception
+class Methods
 {
     /**
-     * Construct
+     * e-payment standard
      *
-     * @param string $message
-     * @param int $code
-     * @param null $previous
+     * PPRO transaction
      */
-    public function __construct($message = '', $code = 0, $previous = null)
-    {
-        if (empty($message)) {
-            $message =
-                'You\'re trying to call a non-existent method!' . PHP_EOL .
-                'For proper usage, please refer to the documentation!';
-        }
+    const EPS = 'eps';
 
-        parent::__construct($message, $code, $previous);
-    }
+    /**
+     * GiroPay
+     *
+     * PPRO transaction
+     */
+    const GIRO_PAY = 'giropay';
+
+    /**
+     * iDEAL
+     *
+     * PPRO transaction
+     */
+    const IDEAL = 'ideal';
+
+    /**
+     * Przelewy24
+     *
+     * PPRO transaction
+     */
+    const PRZELEWY24 = 'przelewy24';
+
+    /**
+     * QIWI
+     *
+     * PPRO transaction
+     */
+    const QIWI = 'qiwi';
+
+    /**
+     * SafetyPay
+     *
+     * PPRO transaction
+     */
+    const SAFETY_PAY = 'safetypay';
+
+    /**
+     * Teleingreso
+     *
+     * PPRO transaction
+     */
+    const TELEINGRESO = 'teleingreso';
+
+    /**
+     * TrustPay
+     *
+     * PPRO transaction
+     */
+    const TRUST_PAY = 'trustpay';
 }

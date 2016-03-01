@@ -20,30 +20,26 @@
  *
  * @license     http://opensource.org/licenses/MIT The MIT License
  */
-namespace Genesis\Exceptions;
+namespace Genesis\API\Constants;
 
 /**
- * Class InvalidMethod
+ * Class Environments
  *
- * @package Genesis\Exceptions
+ * List of server environments
+ *
+ * @package Genesis\API\Constants
  */
-class InvalidMethod extends \Exception
+class Environments
 {
     /**
-     * Construct
-     *
-     * @param string $message
-     * @param int $code
-     * @param null $previous
+     * Live (Production) environment
      */
-    public function __construct($message = '', $code = 0, $previous = null)
-    {
-        if (empty($message)) {
-            $message =
-                'You\'re trying to call a non-existent method!' . PHP_EOL .
-                'For proper usage, please refer to the documentation!';
-        }
+    const PRODUCTION    = 'production';
 
-        parent::__construct($message, $code, $previous);
-    }
+    /**
+     * Test (Staging) environment
+     *
+     * @note NO MONEY ARE BEING TRANSFERRED
+     */
+    const STAGING       = 'sandbox';
 }

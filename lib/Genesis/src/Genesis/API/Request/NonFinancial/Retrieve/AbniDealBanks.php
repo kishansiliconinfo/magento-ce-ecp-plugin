@@ -20,30 +20,33 @@
  *
  * @license     http://opensource.org/licenses/MIT The MIT License
  */
-namespace Genesis\Exceptions;
+namespace Genesis\API\Request\NonFinancial\Retrieve;
 
 /**
- * Class InvalidMethod
+ * Class AbniDealBanks
  *
- * @package Genesis\Exceptions
+ * Retrieve the available Banks for iDEAL payment via ABN
+ *
+ * @package Genesis\API\Request\NonFinancial\Retrieve
  */
-class InvalidMethod extends \Exception
+class AbniDealBanks extends \Genesis\API\Request
 {
     /**
-     * Construct
+     * Set the per-request configuration
      *
-     * @param string $message
-     * @param int $code
-     * @param null $previous
+     * @return void
      */
-    public function __construct($message = '', $code = 0, $previous = null)
+    protected function initConfiguration()
     {
-        if (empty($message)) {
-            $message =
-                'You\'re trying to call a non-existent method!' . PHP_EOL .
-                'For proper usage, please refer to the documentation!';
-        }
+        $this->config = \Genesis\Utils\Common::createArrayObject(
+            array(
+                'protocol' => 'https',
+                'port'     => 443,
+                'type'     => 'GET',
+                'format'   => 'plain',
+            )
+        );
 
-        parent::__construct($message, $code, $previous);
+        $this->setApiConfig('url', $this->buildRequestURL('gateway', 'retrieve_abn_ideal_banks', false));
     }
 }

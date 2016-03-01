@@ -20,30 +20,28 @@
  *
  * @license     http://opensource.org/licenses/MIT The MIT License
  */
-namespace Genesis\Exceptions;
+namespace Genesis\API\Constants;
 
 /**
- * Class InvalidMethod
+ * Class Endpoints
  *
- * @package Genesis\Exceptions
+ * List of possible Genesis endpoints
+ *
+ * @package Genesis\API\Constants
  */
-class InvalidMethod extends \Exception
+class Endpoints
 {
     /**
-     * Construct
+     * Domain for E-ComProcessing's Genesis instance
      *
-     * @param string $message
-     * @param int $code
-     * @param null $previous
+     * @link http://www.e-comprocessing.com/
      */
-    public function __construct($message = '', $code = 0, $previous = null)
-    {
-        if (empty($message)) {
-            $message =
-                'You\'re trying to call a non-existent method!' . PHP_EOL .
-                'For proper usage, please refer to the documentation!';
-        }
+    const ECOMPROCESSING    = 'e-comprocessing.net';
 
-        parent::__construct($message, $code, $previous);
-    }
+    /**
+     * Domain for eMerchantPay's Genesis instance
+     *
+     * @link https://www.emerchantpay.com
+     */
+    const EMERCHANTPAY      = 'emerchantpay.net';
 }
