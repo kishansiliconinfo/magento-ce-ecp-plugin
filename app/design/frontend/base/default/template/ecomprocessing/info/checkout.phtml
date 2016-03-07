@@ -17,7 +17,8 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU General Public License, version 2 (GPL-2.0)
  */
 ?>
-
-<p>
-    <?php echo $this->__('More details about the individual transactions can be found under the "Transactions" section'); ?>
-</p>
+<table>
+	<tr>
+		<td><?php echo $this->htmlEscape($this->getMethod()->getTitle()) ?></td>
+	</tr>
+</table>
