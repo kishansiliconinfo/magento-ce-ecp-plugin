@@ -106,8 +106,14 @@ class EComProcessing_Genesis_Model_Checkout extends Mage_Payment_Model_Method_Ab
                     ->setShippinCountry($shipping->getCountry())
                     ->setLanguage($this->getHelper()->getLocale());
 
-            foreach ($this->getTransactionTypes() as $type) {
-                $genesis->request()->addTransactionType($type);
+            foreach ($this->getTransactionTypes() as $transaction_type) {
+                if (is_array($transaction_type)) {
+                    $genesis->request()->addTransactionType(
+                        $transaction_type['name'], $transaction_type['parameters']
+                    );
+                } else {
+                    $genesis->request()->addTransactionType($transaction_type);
+                }
             }
 
             $genesis->execute();
@@ -533,8 +539,14 @@ class EComProcessing_Genesis_Model_Checkout extends Mage_Payment_Model_Method_Ab
                         case \Genesis\API\Constants\Transaction\Types::AUTHORIZE_3D:
                             $payment->registerAuthorizationNotification($payment_transaction->amount, true);
                             break;
+                        case \Genesis\API\Constants\Transaction\Types::ABNIDEAL:
+                        case \Genesis\API\Constants\Transaction\Types::CASHU:
+                        case \Genesis\API\Constants\Transaction\Types::NETELLER:
+                        case \Genesis\API\Constants\Transaction\Types::PAYSAFECARD:
+                        case \Genesis\API\Constants\Transaction\Types::PPRO:
                         case \Genesis\API\Constants\Transaction\Types::SALE:
                         case \Genesis\API\Constants\Transaction\Types::SALE_3D:
+                        case \Genesis\API\Constants\Transaction\Types::SOFORT:
                             $payment->registerCaptureNotification($payment_transaction->amount, true);
                             break;
                         default:
@@ -566,7 +578,44 @@ class EComProcessing_Genesis_Model_Checkout extends Mage_Payment_Model_Method_Ab
      */
     public function getTransactionTypes()
     {
-        return array_filter(explode(',', $this->getConfigData('genesis_types')));
+        $processed_list = array();
+
+        $selected_types = array_filter(
+            explode(',', $this->getConfigData('genesis_types'))
+        );
+
+        $alias_map = array(
+            \Genesis\API\Constants\Payment\Methods::EPS         =>
+                \Genesis\API\Constants\Transaction\Types::PPRO,
+            \Genesis\API\Constants\Payment\Methods::GIRO_PAY    =>
+                \Genesis\API\Constants\Transaction\Types::PPRO,
+            \Genesis\API\Constants\Payment\Methods::PRZELEWY24  =>
+                \Genesis\API\Constants\Transaction\Types::PPRO,
+            \Genesis\API\Constants\Payment\Methods::QIWI        =>
+                \Genesis\API\Constants\Transaction\Types::PPRO,
+            \Genesis\API\Constants\Payment\Methods::SAFETY_PAY  =>
+                \Genesis\API\Constants\Transaction\Types::PPRO,
+            \Genesis\API\Constants\Payment\Methods::TELEINGRESO =>
+                \Genesis\API\Constants\Transaction\Types::PPRO,
+            \Genesis\API\Constants\Payment\Methods::TRUST_PAY   =>
+                \Genesis\API\Constants\Transaction\Types::PPRO,
+        );
+
+        foreach ($selected_types as $selected_type) {
+            if (array_key_exists($selected_type, $alias_map)) {
+                $transaction_type = $alias_map[$selected_type];
+
+                $processed_list[$transaction_type]['name'] = $transaction_type;
+
+                $processed_list[$transaction_type]['parameters'][] = array(
+                    'payment_method' => $selected_type
+                );
+            } else {
+                $processed_list[] = $selected_type;
+            }
+        }
+
+        return $processed_list;
     }
 
     /**
