@@ -47,6 +47,18 @@ GNU General Public License for more details.
                 <ecomprocessing>EComProcessing</ecomprocessing>
             </groups>
         </payment>
+        
+        <events>
+            <ecomprocessing_genesis_init_library>
+                <observers>
+                    <EComProcessing_Genesis>
+                        <class>EComProcessing_Genesis_Observer_GenesisAutoLoader</class>
+                        <method>addAutoLoad</method>
+                    </EComProcessing_Genesis>
+                </observers>
+            </ecomprocessing_genesis_init_library>
+        </events>
+        
     </global>
 
     <frontend>

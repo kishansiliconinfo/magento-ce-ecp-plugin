@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (C) 2015 E-ComProcessing™
+ * Copyright (C) 2016 E-ComProcessing
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -13,16 +13,16 @@
  * GNU General Public License for more details.
  *
  * @author      E-ComProcessing
- * @copyright   2015 E-ComProcessing™
+ * @copyright   2016 E-ComProcessing
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU General Public License, version 2 (GPL-2.0)
  */
 
 /**
- * Class EComProcessing_Genesis_Model_Admin_Transaction_Type
+ * Class EComProcessing_Genesis_Model_Admin_Direct_Options_Transaction_Type
  *
- * Admin options Drop-down for Genesis Transaction Types
+ * Admin options Drop-down for Genesis Direct Transaction Types
  */
-class EComProcessing_Genesis_Model_Admin_Options_Transaction_Type
+class EComProcessing_Genesis_Model_Admin_Direct_Options_Transaction_Type
 {
     /**
      * Pre-load the required files
