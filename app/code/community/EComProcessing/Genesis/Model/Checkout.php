@@ -162,6 +162,12 @@ class EComProcessing_Genesis_Model_Checkout extends Mage_Payment_Model_Method_Ab
 
             $authorize = $payment->lookupTransaction(null, Mage_Sales_Model_Order_Payment_Transaction::TYPE_AUTH);
 
+            /* Capture should only be possible, when Authorize Transaction Exists */
+            if (!isset($authorize) || $authorize === false) {
+                Mage::log('Capture transaction for order #' . $payment->getOrder()->getIncrementId() . ' cannot be finished (No Authorize Transaction exists)');
+                return $this; 
+            }
+            
             $reference_id = $authorize->getTxnId();
 
             $genesis = new \Genesis\Genesis('Financial\Capture');
@@ -241,6 +247,12 @@ class EComProcessing_Genesis_Model_Checkout extends Mage_Payment_Model_Method_Ab
 
             $capture = $payment->lookupTransaction(null, Mage_Sales_Model_Order_Payment_Transaction::TYPE_CAPTURE);
 
+            /* Refund Transaction is only possible, when Capture Transaction Exists */
+            if (!isset($capture) || $capture === false) {
+              Mage::log('Refund transaction for order #' . $payment->getOrder()->getIncrementId() . ' could not be completed! (No Capture Transaction Exists');
+              return $this; 
+            }
+            
             $reference_id = $capture->getTxnId();
 
             $genesis = new \Genesis\Genesis('Financial\Refund');

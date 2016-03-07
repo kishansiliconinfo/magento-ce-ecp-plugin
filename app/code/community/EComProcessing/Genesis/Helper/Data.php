@@ -34,18 +34,18 @@ class EComProcessing_Genesis_Helper_Data extends Mage_Core_Helper_Abstract
         // Mitigate PHP Bug #52339, as Magento already registers their AutoLoader
         if (!class_exists('\Genesis\Genesis', false)) {
              $genesisAutoLoadParams = array(
-								'magento_root' 											 => MAGENTO_ROOT,
-								'integrated_genesis_lib_auto_loader' => Mage::getBaseDir('lib') . DS . 'Genesis' . DS . 'vendor' . DS . 'autoload.php',
-								'genesis_composer_dir' 							 => 'genesisgateway',
-								'check_genesis_lib_version'					 => '1',
-								'required_genesis_lib_version' 			 => ">= 1.4"
-			       );
-			       
-						 $genesisAutoLoadVarienObj = new Varien_Object($genesisAutoLoadParams);
-						 
-						 /* This Event will be handled from Observer EComProcessing_Genesis_Observer_GenesisAutoLoader (defined in etc/config.xml) */
-						 Mage::dispatchEvent('ecomprocessing_genesis_init_library', array('genesis_auto_load_params' => $genesisAutoLoadVarienObj));
-        }				 
+                'magento_root'                       => MAGENTO_ROOT,
+                'integrated_genesis_lib_auto_loader' => Mage::getBaseDir('lib') . DS . 'Genesis' . DS . 'vendor' . DS . 'autoload.php',
+                'genesis_composer_dir'               => 'genesisgateway',
+                'check_genesis_lib_version'          => '1',
+                'required_genesis_lib_version'       => ">= 1.4"
+             );
+             
+             $genesisAutoLoadVarienObj = new Varien_Object($genesisAutoLoadParams);
+             
+             /* This Event will be handled from Observer EComProcessing_Genesis_Observer_GenesisAutoLoader (defined in etc/config.xml) */
+             Mage::dispatchEvent('ecomprocessing_genesis_init_library', array('genesis_auto_load_params' => $genesisAutoLoadVarienObj));
+        }     	 
     }
     
     /**

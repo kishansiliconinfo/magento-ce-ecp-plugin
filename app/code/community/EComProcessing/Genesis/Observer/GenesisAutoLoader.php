@@ -26,11 +26,11 @@ class EComProcessing_Genesis_Observer_GenesisAutoLoader
 {
     public function addAutoLoad($observer)
     {
-    		$event = $observer->getEvent();
-    		$genesisAutoLoadParams = $event->getGenesisAutoLoadParams();
-    		
-				$mustCheckGenesisLibVersion = $genesisAutoLoadParams->getCheckGenesisLibVersion() == '1';
-				
+        $event = $observer->getEvent();
+        $genesisAutoLoadParams = $event->getGenesisAutoLoadParams();
+        
+        $mustCheckGenesisLibVersion = $genesisAutoLoadParams->getCheckGenesisLibVersion() == '1';
+        
         // Mitigate PHP Bug #52339, as Magento already registers their AutoLoader
         if (!class_exists('\Genesis\Genesis', false)) {
             $vendorDir = $genesisAutoLoadParams->getMagentoRoot() . DS . 'vendor';
@@ -42,28 +42,28 @@ class EComProcessing_Genesis_Observer_GenesisAutoLoader
 
             if (class_exists('Genesis\Genesis') && $mustCheckGenesisLibVersion)
                $this->checkGenesisLibVersion(
-               		$genesisAutoLoadParams->getRequiredGenesisLibVersion()
+                  $genesisAutoLoadParams->getRequiredGenesisLibVersion()
                );
 
-						if (!class_exists('Genesis\Genesis')) {
-							$integratedGenesisLibAutoLoader = $genesisAutoLoadParams->getIntegratedGenesisLibAutoLoader();
-							if (file_exists($integratedGenesisLibAutoLoader))
-								include $integratedGenesisLibAutoLoader;
-						}
+            if (!class_exists('Genesis\Genesis')) {
+              $integratedGenesisLibAutoLoader = $genesisAutoLoadParams->getIntegratedGenesisLibAutoLoader();
+              if (file_exists($integratedGenesisLibAutoLoader))
+                include $integratedGenesisLibAutoLoader;
+            }
         }
         
         return $this;
     }
 
     private function checkGenesisLibVersion($requiredVersion) {
-    		$params = explode(' ', $requiredVersion);
-    		$operator = $params[0];
-    		$version = $params[1];
-    		
+        $params = explode(' ', $requiredVersion);
+        $operator = $params[0];
+        $version = $params[1];
+        
         if (class_exists('\Genesis\Config') && !version_compare(\Genesis\Config::getVersion(), $version, $operator)) {
-        		$currentGenesisVersion = \Genesis\Config::getVersion();
-        		Mage::throwException(sprintf("Incompatible GenesisPHP Lib Version (Found %s; Required %s %s)", $currentGenesisVersion, $operator, $version));
-    		}
+            $currentGenesisVersion = \Genesis\Config::getVersion();
+            Mage::throwException(sprintf("Incompatible GenesisPHP Lib Version (Found %s; Required %s %s)", $currentGenesisVersion, $operator, $version));
+        }
     }
     
 }
