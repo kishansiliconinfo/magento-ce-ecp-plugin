@@ -51,7 +51,12 @@ class EComProcessing_Genesis_Observer_GenesisAutoLoader
                 include $integratedGenesisLibAutoLoader;
             }
         }
-        
+        elseif ($mustCheckGenesisLibVersion) {
+              $this->checkGenesisLibVersion(
+                 $genesisAutoLoadParams->getRequiredGenesisLibVersion()
+              );
+        }
+				        
         return $this;
     }
 
