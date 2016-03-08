@@ -7,11 +7,33 @@ Requirements
 ------------
 
 * Magento Community Edition* > 1.7
-* GenesisPHP 1.2
+* [GenesisPHP v1.4](https://github.com/GenesisGateway/genesis_php) - (Integrated in Module)
 * PCI-certified server in order to use ```E-ComProcessing Direct```
 
 *Note: this module has been tested only with Magento __Community Edition__, it may not work
 as intended with Magento __Enterprise Edition__
+
+Install GenesisGateway Library
+------------
+
+You should follow these steps to install the __GenesisGateway__ Library if you wish to use more than one Payment Solution, which use GenesisGateway
+
+* Install __Composer__ - [Composer Download Instructions](https://getcomposer.org/doc/00-intro.md)
+
+* Install __GenesisGateway__
+
+    ```sh
+    $ composer require GenesisGateway/genesis_php:1.4@stable
+    ```
+
+* Remove __GenesisGateway__
+
+    ```sh
+    $ composer remove GenesisGateway/genesis_php
+    ```
+
+If you have the correct version of __GenesisGateway__ Library installed on your __Magento CE__, the Payment Module will not use the 
+integrated Library in the Module, but it will connect to the __GenesisGateway__ installed by __Composer__.
 
 GenesisPHP Requirements
 ------------
@@ -26,7 +48,7 @@ GenesisPHP Requirements
     * [XMLWriter](https://php.net/xmlwriter)
 
 Installation (via Modman)
----------------------
+------------
 
 * Install [ModMan]
 * Navigate to the root of your Magento installation
@@ -36,10 +58,12 @@ Installation (via Modman)
 * Check ```Enable```, set the correct credentials, select your prefered payment method and click ```Save config```
 
 Installation (manual)
----------------------
+------------
 
 * Copy the files to the root folder of your Magento installation
 * Login inside the Admin Panel and go to ```System``` -> ```Configuration``` -> ```Payment Methods```
+* If one of the Payment Methods ```E-ComProcessing Direct``` or ```E-ComProcessing Checkout``` is not yet available, 
+  go to  ```System``` -> ```Cache Management``` and clear Magento Cache by clicking on ```Flush Magento Cache```
 * Check ```Enable```, set the correct credentials, select your prefered payment method and click ```Save config```
 
 You're now ready to process payments through our gateway.
