@@ -1,5 +1,4 @@
-Genesis client for Magento CE
-=============================
+================================================
 
 This is a Payment Module for Magento Community Edition, that gives you the ability to process payments through E-ComProcessing's Payment Gateway - Genesis.
 
@@ -17,6 +16,7 @@ Install GenesisGateway Library
 ------------
 
 You should follow these steps to install the __GenesisGateway__ Library if you wish to use more than one Payment Solution, which use GenesisGateway
+
 
 * Install __Composer__ - [Composer Download Instructions](https://getcomposer.org/doc/00-intro.md)
 
@@ -59,6 +59,15 @@ Installation (via Modman)
 
 Installation (manual)
 ------------
+To avoid such errors in the future when installing/upgrading extensions I recommend the following steps in our
+
+1) Turn off Magento’s Compilation Mode
+2) Turn on Magento’s Cache
+3) Install the Extension
+4) Refresh Magento’s Cache
+5) Log Out of the Backend and Log Back In
+6) Rerun Magento’s Compilation Process
+7) Genesis client for Magento CE
 
 * Copy the files to the root folder of your Magento installation
 * Login inside the Admin Panel and go to ```System``` -> ```Configuration``` -> ```Payment Methods```
